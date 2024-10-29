@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,19 +12,27 @@ public class GameManager : MonoBehaviour
     public GameObject WinScreen;
     public GameObject FailScreen;
 
-    // 新增的角色 Sprite 管理
-    public SpriteRenderer ScoreRenderer; // 角色的 SpriteRenderer
-    public Sprite[] ScoreSprites; // 角色的 4 张 Sprite 图像，表示不同状态
+    public SpriteRenderer ScoreRenderer;
+    public Sprite[] ScoreSprites;
+
+    public TextMeshProUGUI countdownText;
 
     void Awake()
     {
         Instance = this;
+        Time.timeScale = 1;
     }
 
     void Update()
     {
         // 倒计时
         gameTime -= Time.deltaTime;
+
+        if (countdownText != null)
+        {
+            int displayTime = Mathf.CeilToInt(gameTime);
+            countdownText.text = displayTime.ToString() + "s";
+        }
 
         // 如果时间到了，且未超过最大错误数，则胜利
         if (gameTime <= 0 && missedFruits < maxMisses)
