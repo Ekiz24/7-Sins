@@ -1,8 +1,13 @@
 fileFormatVersion: 2
-guid: 098fc9bab5bd9b54b9491dd668452c7a
+guid: 5f07af26d3668bb4d8cf1d8bb9a8746f
 ScriptedImporter:
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:AnimationClip
+      assembly: UnityEngine.AnimationModule
+      name: Donut3_Clip
+    second: {fileID: 7400000, guid: cca8a94996bc843c299119fd0d78dda8, type: 2}
   serializedVersion: 2
   userData: 
   assetBundleName: 
@@ -95,7 +100,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638646782703259201
+  platformSettingsDirtyTick: 638657324596193210
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -121,16 +126,16 @@ ScriptedImporter:
   animatedSpriteImportData:
   - name: Frame_0
     originalName: 
-    pivot: {x: 0.54545456, y: -0.15789473}
+    pivot: {x: 0.5, y: -0.3}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
-      y: 36
-      width: 11
-      height: 19
-    spriteID: c4fd6162252fdea46a95ed284278cd84
+      y: 44
+      width: 12
+      height: 10
+    spriteID: 29b96af6a6d6e1341afa2f7b3719556f
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -138,19 +143,19 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 36}
+    uvTransform: {x: 4, y: 44}
   - name: Frame_1
     originalName: 
-    pivot: {x: 0.5714286, y: -0.14285715}
+    pivot: {x: 0.53846157, y: -0.27272728}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 28
-      y: 4
-      width: 14
-      height: 21
-    spriteID: 9319067ec0b62c0488583691da6c70d3
+      x: 4
+      y: 25
+      width: 13
+      height: 11
+    spriteID: 801f47ba6c7397f4eb42e1192604215c
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -158,19 +163,19 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 28, y: 4}
+    uvTransform: {x: 4, y: 25}
   - name: Frame_2
     originalName: 
-    pivot: {x: 0.5, y: 0}
+    pivot: {x: 0.53333336, y: -0.15384616}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 16
-      height: 24
-    spriteID: 89a522d7737bbd5419e9246578198223
+      width: 15
+      height: 13
+    spriteID: 6f896fdd5e7f15a4aab446b1b6bb4885
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -182,8 +187,8 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: -1141445337
-    name: Fast food1
+    guid: -2005974421
+    name: Donut3
     layerFlags: 0
     layerType: 0
     blendMode: 0
@@ -194,27 +199,27 @@ ScriptedImporter:
       cellRect:
         x: 2
         y: 3
-        width: 11
-        height: 19
-      spriteId: c4fd6162252fdea46a95ed284278cd84
+        width: 12
+        height: 10
+      spriteId: 29b96af6a6d6e1341afa2f7b3719556f
     - name: Frame_1
       frameIndex: 1
       additiveSortOrder: 0
       cellRect:
-        x: 0
+        x: 1
         y: 3
-        width: 14
-        height: 21
-      spriteId: 9319067ec0b62c0488583691da6c70d3
+        width: 13
+        height: 11
+      spriteId: 801f47ba6c7397f4eb42e1192604215c
     - name: Frame_2
       frameIndex: 2
       additiveSortOrder: 0
       cellRect:
         x: 0
-        y: 0
-        width: 16
-        height: 24
-      spriteId: 89a522d7737bbd5419e9246578198223
+        y: 2
+        width: 15
+        height: 13
+      spriteId: 6f896fdd5e7f15a4aab446b1b6bb4885
     linkedCells: []
     parentIndex: -1
   platformSettings:
@@ -273,7 +278,29 @@ ScriptedImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     androidETC2FallbackOverride: 0
+  - name: Android
+    overridden: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  - name: iPhone
+    overridden: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
   generatePhysicsShape: 0
   secondarySpriteTextures: []
   spritePackingTag: 
-  canvasSize: {x: 16, y: 24}
+  canvasSize: {x: 16, y: 16}
