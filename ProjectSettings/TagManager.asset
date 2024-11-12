@@ -11,7 +11,7 @@ TagManager:
   - Fruit
   - Water
   - UI
-  - 
+  - Clock
   - 
   - 
   - 
@@ -38,6 +38,15 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: background
+    uniqueID: 3285255445
+    locked: 0
+  - name: Clock
+    uniqueID: 1087694339
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: UI
+    uniqueID: 3455562079
     locked: 0
