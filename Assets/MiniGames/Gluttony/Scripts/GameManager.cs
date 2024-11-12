@@ -17,6 +17,9 @@ public class GameManager : MonoBehaviour
 
     public TextMeshProUGUI countdownText;
 
+    // 添加主角动画控制器引用
+    public Animator characterAnimator;
+
     void Awake()
     {
         Instance = this;
@@ -50,6 +53,12 @@ public class GameManager : MonoBehaviour
     public void MissFruit()
     {
         missedFruits++;
+
+        // 播放吞咽动画
+        if (characterAnimator != null)
+        {
+            characterAnimator.SetTrigger("Swallow"); // "Swallow"是动画触发器的名称
+        }
 
         // 更新角色的 sprite，以显示不同的状态
         if (missedFruits - 1 < ScoreSprites.Length)
