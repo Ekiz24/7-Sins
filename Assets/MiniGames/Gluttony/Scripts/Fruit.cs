@@ -25,7 +25,7 @@ public class Fruit : MonoBehaviour
 
         if (transform.position.y < -5) // 掉出屏幕则扣分
         {
-            GameManager.Instance.MissFruit();
+            GameManagerForGluttony.Instance.MissFruit();
             Destroy(gameObject);
         }
     }

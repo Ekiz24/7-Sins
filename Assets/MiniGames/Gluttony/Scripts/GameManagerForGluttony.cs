@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class GameManager : MonoBehaviour
+public class GameManagerForGluttony : MonoBehaviour
 {
-    public static GameManager Instance;
+    public static GameManagerForGluttony Instance;
     private int missedFruits = 0;
     public int maxMisses = 4; // 最多可以错过的水果数
     public float gameTime = 120f; // 游戏时间 120 秒
