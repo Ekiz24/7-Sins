@@ -2,7 +2,12 @@ fileFormatVersion: 2
 guid: c0cf352f1f6d6f349aa61d972c04de94
 ScriptedImporter:
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:AnimationClip
+      assembly: UnityEngine.AnimationModule
+      name: Wrath boy_Clip
+    second: {fileID: 7400000, guid: 78c19cc5678164d3b9f15e22ede14982, type: 2}
   serializedVersion: 2
   userData: 
   assetBundleName: 
@@ -95,7 +100,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638670361263152240
+  platformSettingsDirtyTick: 638670470432343590
   textureAssetName: 
   singleSpriteImportData:
   - name: 
