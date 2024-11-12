@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro; // 使用 TextMeshPro
 
 public class GameManagerForWrath : MonoBehaviour
 {
@@ -25,9 +25,8 @@ public class GameManagerForWrath : MonoBehaviour
     // UI相关
     public GameObject winScreen;
     public GameObject loseScreen;
-    public Text playerHealthText;
-    public Text policeHealthText;
-    public Text killedCiviliansText;
+    public TextMeshProUGUI playerHealthText; // 使用 TextMeshProUGUI
+    public TextMeshProUGUI killedCiviliansText; // 使用 TextMeshProUGUI
 
     private void Awake()
     {
@@ -48,7 +47,7 @@ public class GameManagerForWrath : MonoBehaviour
 
     private void InitializeGame()
     {
-        UpdateUI();
+        UpdateUI(); // 在游戏初始化时更新UI
     }
 
     public void OnCivilianKilled(Vector3 position)
@@ -82,12 +81,17 @@ public class GameManagerForWrath : MonoBehaviour
 
     private void UpdateUI()
     {
+        Debug.Log("Updating UI");
         if (playerHealthText != null)
+        {
             playerHealthText.text = $"Health: {playerHealth}";
-        if (policeHealthText != null)
-            policeHealthText.text = $"Police Health: {policeHealth}";
+            Debug.Log($"Updated playerHealthText: {playerHealthText.text}");
+        }
         if (killedCiviliansText != null)
+        {
             killedCiviliansText.text = $"Kills: {killedCivilians}/{civilians.Count}";
+            Debug.Log($"Updated killedCiviliansText: {killedCiviliansText.text}");
+        }
     }
 
     public void DamagePlayer(int damage)
@@ -107,6 +111,13 @@ public class GameManagerForWrath : MonoBehaviour
         {
             GameWin();
         }
-        UpdateUI();
+    }
+
+    public void OnPlayerCollideWithPolice()
+    {
+        if (killedCivilians == 0)
+        {
+            GameWin();
+        }
     }
 }

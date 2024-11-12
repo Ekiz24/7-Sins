@@ -26,7 +26,11 @@ public class Police : MonoBehaviour
     void Shoot()
     {
         GameObject bullet = Instantiate(bulletPrefab, bulletSpawnPoint.position, Quaternion.identity);
-        bullet.GetComponent<Bullet>().damage = GameManagerForWrath.Instance.GetPoliceDamage();
+        PoliceBullet bulletScript = bullet.GetComponent<PoliceBullet>();
+        if (bulletScript != null)
+        {
+            bulletScript.damage = GameManagerForWrath.Instance.GetPoliceDamage();
+        }
     }
 
     public void TakeDamage(int damage)
