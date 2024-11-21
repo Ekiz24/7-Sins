@@ -170,6 +170,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wrath background
       objectReference: {fileID: 0}
+    - target: {fileID: -2253911629886400664, guid: 750ffd279e65e8d49b4e4d2823877f54, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3626916397498700004, guid: 750ffd279e65e8d49b4e4d2823877f54, type: 3}
       propertyPath: m_Sprite
       value: 
