@@ -13,18 +13,24 @@ public class PlayerController : MonoBehaviour
     private bool isGrounded = false;
     private Rigidbody2D rb;
     private Collider2D coll;
+    private Animator animator;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         coll = GetComponent<Collider2D>();
+        animator = GetComponent<Animator>(); // 获取Animator组件
     }
 
     void Update()
     {
         Move();
-        Shoot();
         CheckGround();
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Shoot();
+        }
     }
 
     void Move()
@@ -45,15 +51,26 @@ public class PlayerController : MonoBehaviour
 
     void Shoot()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        // 设置Animator参数为true，播放打枪动画
+        animator.SetBool("Shoot", true);
+        StartCoroutine(ShootWithDelay());
+    }
+
+    IEnumerator ShootWithDelay()
+    {
+        // 延迟0.5秒后生成子弹
+        yield return new WaitForSeconds(0.3f);
+
+        GameObject bullet = Instantiate(bulletPrefab, bulletSpawnPoint.position, Quaternion.identity);
+        Bullet bulletScript = bullet.GetComponent<Bullet>();
+        if (bulletScript != null)
         {
-            GameObject bullet = Instantiate(bulletPrefab, bulletSpawnPoint.position, Quaternion.identity);
-            Bullet bulletScript = bullet.GetComponent<Bullet>();
-            if (bulletScript != null)
-            {
-                bulletScript.SetDirection(facingRight ? Vector2.right : Vector2.left);
-            }
+            bulletScript.SetDirection(facingRight ? Vector2.right : Vector2.left);
         }
+
+        // 等待打枪动画播放完毕
+        yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length - 0.5f);
+        animator.SetBool("Shoot", false);
     }
 
     void Flip()
