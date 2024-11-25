@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro; // 使用 TextMeshPro
+using TMPro;
 
 public class GameManagerForWrath : MonoBehaviour
 {
@@ -13,7 +13,7 @@ public class GameManagerForWrath : MonoBehaviour
     public GameObject bulletPrefab;
 
     // 平民相关
-    public List<GameObject> civilians; // 手动放置的平民对象列表
+    public List<GameObject> civilians;
     public int killedCivilians = 0;
     public GameObject bloodEffectPrefab;
 
@@ -25,8 +25,9 @@ public class GameManagerForWrath : MonoBehaviour
     // UI相关
     public GameObject winScreen;
     public GameObject loseScreen;
-    public TextMeshProUGUI playerHealthText; // 使用 TextMeshProUGUI
-    public TextMeshProUGUI killedCiviliansText; // 使用 TextMeshProUGUI
+    public TextMeshProUGUI playerHealthText;
+    public TextMeshProUGUI killedCiviliansText;
+    public GameObject[] FrontBlood;
 
     private void Awake()
     {
@@ -48,6 +49,7 @@ public class GameManagerForWrath : MonoBehaviour
     private void InitializeGame()
     {
         UpdateUI(); // 在游戏初始化时更新UI
+        UpdateFrontBlood(); // 初始化时更新前景血迹
     }
 
     public void OnCivilianKilled(Vector3 position)
@@ -55,6 +57,7 @@ public class GameManagerForWrath : MonoBehaviour
         killedCivilians++;
         Instantiate(bloodEffectPrefab, position, Quaternion.identity);
         UpdateUI();
+        UpdateFrontBlood(); // 更新前景血迹
     }
 
     public int GetPoliceDamage()
@@ -94,11 +97,20 @@ public class GameManagerForWrath : MonoBehaviour
         }
     }
 
+    private void UpdateFrontBlood()
+    {
+        for (int i = 0; i < FrontBlood.Length; i++)
+        {
+            FrontBlood[i].SetActive(i < killedCivilians);
+        }
+    }
+
     public void DamagePlayer(int damage)
     {
         playerHealth -= damage;
         if (playerHealth <= 0)
         {
+            playerHealth = 0;
             GameLose();
         }
         UpdateUI();

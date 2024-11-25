@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     public GameObject bulletPrefab;
     public Transform bulletSpawnPoint;
     public LayerMask groundLayer; // 用于检测地面的图层
+    public GameObject[] bossFight;
 
     private bool facingRight = true;
     private bool isGrounded = false;
@@ -58,7 +59,7 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator ShootWithDelay()
     {
-        // 延迟0.5秒后生成子弹
+        // 延迟x秒后生成子弹
         yield return new WaitForSeconds(0.3f);
 
         GameObject bullet = Instantiate(bulletPrefab, bulletSpawnPoint.position, Quaternion.identity);
@@ -89,7 +90,14 @@ public class PlayerController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Police"))
+        if (other.CompareTag("BossFight"))
+        {
+            foreach (GameObject obj in bossFight)
+            {
+                obj.SetActive(true);
+            }
+        }
+        else if (other.CompareTag("Police"))
         {
             GameManagerForWrath.Instance.OnPlayerCollideWithPolice();
         }
