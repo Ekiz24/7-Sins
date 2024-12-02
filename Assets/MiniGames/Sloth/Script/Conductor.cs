@@ -16,17 +16,23 @@ public class Conductor : MonoBehaviour
 	// 参见图片: http://shinerightstudio.com/posts/music-syncing-in-rhythm-games/pic1.png
 	public float[] track;
 
+	// 用于确定位置的四个 GameObject
+	public GameObject startLineObject;
+	public GameObject posYObject;
+	public GameObject finishLineObject;
+	public GameObject removeLineObject;
+
 	// 音符的起始位置X。
-	public float startLineX;
+	private float startLineX;
 
 	// 音符的位置Y。
-	public float posY;
+	private float posY;
 
 	// 音符的终点线（玩家击打的位置X）。
-	public float finishLineX;
+	private float finishLineX;
 
 	// 音符应被销毁的位置X。
-	public float removeLineX;
+	private float removeLineX;
 
 	// 容忍的偏移量位置。（如果玩家击打音符稍微不准确，我们会容忍并将其计为成功击打。）
 	public float tolerationOffset;
@@ -80,9 +86,9 @@ public class Conductor : MonoBehaviour
 			float offset = Mathf.Abs(frontNote.gameObject.transform.position.x - finishLineX);
 
 			// 音符命中。
-			if (offset >= tolerationOffset)
+			if (offset <= tolerationOffset)
 			{
-				// 将颜色更���为绿色以表示 "HIT"。
+				// 将颜色更改为绿色以表示 "HIT"。
 				frontNote.ChangeColor(true);
 
 				statusText.text = "HIT!";
@@ -95,6 +101,24 @@ public class Conductor : MonoBehaviour
 
 	void Start()
 	{
+		// 初始化位置变量
+		if (startLineObject != null)
+		{
+			startLineX = startLineObject.transform.position.x;
+		}
+		if (posYObject != null)
+		{
+			posY = posYObject.transform.position.y;
+		}
+		if (finishLineObject != null)
+		{
+			finishLineX = finishLineObject.transform.position.x;
+		}
+		if (removeLineObject != null)
+		{
+			removeLineX = removeLineObject.transform.position.x;
+		}
+
 		// 初始化一些变量。
 		notesOnScreen = new Queue<MusicNote>();
 		indexOfNextNote = 0;
@@ -149,7 +173,7 @@ public class Conductor : MonoBehaviour
 		{
 			MusicNote currNote = notesOnScreen.Peek();
 
-			if (currNote.transform.position.x <= finishLineX + tolerationOffset)
+			if (currNote.transform.position.x <= finishLineX - tolerationOffset)
 			{
 				// 将颜色更改为红色以表示未命中。
 				currNote.ChangeColor(false);
