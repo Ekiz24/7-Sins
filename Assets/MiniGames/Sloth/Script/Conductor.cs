@@ -89,7 +89,7 @@ public class Conductor : MonoBehaviour
 			if (offset <= tolerationOffset)
 			{
 				// 将颜色更改为绿色以表示 "HIT"。
-				frontNote.ChangeColor(true);
+				frontNote.ChangeSprite(true);
 
 				statusText.text = "HIT!";
 
@@ -176,7 +176,7 @@ public class Conductor : MonoBehaviour
 			if (currNote.transform.position.x <= finishLineX - tolerationOffset)
 			{
 				// 将颜色更改为红色以表示未命中。
-				currNote.ChangeColor(false);
+				currNote.ChangeSprite(false);
 
 				notesOnScreen.Dequeue();
 

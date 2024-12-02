@@ -12,8 +12,8 @@ public class MusicNote : MonoBehaviour
 	public float removeLineX;
 	public float beat;
 
-	public Color hitColor;
-	public Color missColor;
+	public Sprite hitSprite;
+	public Sprite missSprite;
 	private SpriteRenderer spriteRenderer;
 
 	public void Initialize(Conductor conductor, float startX, float endX, float removeLineX, float posY, float beat)
@@ -25,7 +25,7 @@ public class MusicNote : MonoBehaviour
 		this.removeLineX = removeLineX;
 
 		// Set to initial position.
-		transform.position = new Vector2(startX, posY);
+		transform.position = new Vector2(startX, posY + 0.2f); // 0.2f 是使音符出现在线条上方的偏移量。
 
 		spriteRenderer = GetComponent<SpriteRenderer>();
 	}
@@ -49,15 +49,15 @@ public class MusicNote : MonoBehaviour
 	}
 
 	// Change the color to indicate whether its a "HIT" or a "MISS".
-	public void ChangeColor(bool hit)
+	public void ChangeSprite(bool hit)
 	{
 		if (hit)
 		{
-			spriteRenderer.color = hitColor;
+			spriteRenderer.sprite = hitSprite;
 		}
 		else
 		{
-			spriteRenderer.color = missColor;
+			spriteRenderer.sprite = missSprite;
 		}
 	}
 }

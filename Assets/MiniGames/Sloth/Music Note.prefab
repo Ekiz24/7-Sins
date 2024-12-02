@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: -101503467335633697, guid: 5723f3a05896b4f469fd6b142b2fd620, type: 3}
+  m_Sprite: {fileID: -7250473113571293561, guid: bfb74de1c9556e04eb04f10653de5791, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -102,5 +102,5 @@ MonoBehaviour:
   endX: 0
   removeLineX: 0
   beat: 0
-  hitColor: {r: 0.21176472, g: 0.85098046, b: 0.023529414, a: 1}
-  missColor: {r: 1, g: 0, b: 0, a: 1}
+  hitSprite: {fileID: -101503467335633697, guid: 5723f3a05896b4f469fd6b142b2fd620, type: 3}
+  missSprite: {fileID: -945337098048967996, guid: 63456d3b63abb6942b58dcd51af726fa, type: 3}
