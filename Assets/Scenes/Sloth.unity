@@ -1365,10 +1365,10 @@ MonoBehaviour:
   - 136
   - 140
   - 144
-  startLineX: -8
+  startLineX: 8
   posY: 0
-  finishLineX: 5
-  removeLineX: 8
+  finishLineX: -5
+  removeLineX: -8
   tolerationOffset: 0.7
   secondsPerBeat: 0.5769231
   BeatsShownOnScreen: 4

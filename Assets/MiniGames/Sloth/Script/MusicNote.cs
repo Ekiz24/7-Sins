@@ -26,19 +26,23 @@ public class MusicNote : MonoBehaviour
 
 		// Set to initial position.
 		transform.position = new Vector2(startX, posY);
-		
+
 		spriteRenderer = GetComponent<SpriteRenderer>();
 	}
 
 	void Update()
 	{
-		// We update the position of the note according to the position of the song.
-		// (Think of this as "resetting" instead of "updating" the position of the note each frame according to the position of the song.)
-		// See this image: http://shinerightstudio.com/posts/music-syncing-in-rhythm-games/pic3.png (Note that the direction is reversed.)
+		// 根据歌曲的位置更新音符的位置。
+		// （将其视为每帧根据歌曲的位置“重置”而不是“更新”音符的位置。）
+		// 参见图片: http://shinerightstudio.com/posts/music-syncing-in-rhythm-games/pic3.png（注意方向是反的。）
 		transform.position = new Vector2(startX + (endX - startX) * (1f - (beat - conductor.songposition / conductor.secondsPerBeat) / conductor.BeatsShownOnScreen), transform.position.y);
 
-		// Remove itself when out of the screen (remove line).
-		if (transform.position.x > removeLineX)
+		// 当超出屏幕（移除线）时移除自身。
+		if (startX > endX && transform.position.x < removeLineX)
+		{
+			Destroy(gameObject);
+		}
+		else if (startX < endX && transform.position.x > removeLineX)
 		{
 			Destroy(gameObject);
 		}
