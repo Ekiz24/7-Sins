@@ -23,6 +23,8 @@ public class Conductor : MonoBehaviour
 	public GameObject removeLineObject;
 	public GameObject winScreen;
 	public GameObject loseScreen;
+	public GameObject[] trashBag;
+	public GameObject[] missCounters;
 
 	// 音符的起始位置X。
 	private float startLineX;
@@ -59,7 +61,7 @@ public class Conductor : MonoBehaviour
 
 	// 队列，保存当前在屏幕上的音乐节点的引用。
 	private int missCount;
-	public int totalMissCount = 3;
+	public int totalMissCount = 5;
 	private Queue<MusicNote> notesOnScreen;
 
 	// 记录上一帧音频引擎经过的时间。我们用这个来计算歌曲的位置。
@@ -67,6 +69,7 @@ public class Conductor : MonoBehaviour
 
 	private bool songStarted = false;
 	private bool songFinished = false;
+	private bool gameLost = false;
 
 	void PlayerInputted()
 	{
@@ -141,7 +144,7 @@ public class Conductor : MonoBehaviour
 	void Update()
 	{
 		// 检查按键输入。
-		if (Input.GetKeyDown(KeyCode.Space))
+		if (Input.GetKeyDown(KeyCode.Space) && !gameLost)
 		{
 			PlayerInputted();
 		}
@@ -157,7 +160,7 @@ public class Conductor : MonoBehaviour
 		float beatToShow = songposition / secondsPerBeat + BeatsShownOnScreen;
 
 		// 检查轨道中是否还有音符，并检查下一个音符是否在我们打算显示在屏幕上的范围内。
-		if (indexOfNextNote < track.Length && track[indexOfNextNote] < beatToShow)
+		if (indexOfNextNote < track.Length && track[indexOfNextNote] < beatToShow && !gameLost)
 		{
 
 			// 实例化一个新的音乐音符。（如果你希望最小化实例化游戏对象时的延迟，可以搜索“对象池化”以获取更多信息。）
@@ -191,18 +194,34 @@ public class Conductor : MonoBehaviour
 				currNote.ChangeSprite(false);
 
 				notesOnScreen.Dequeue();
-
 				statusText.text = "MISS!";
-
+				UpdateTrashBag();
+				UpdateMissCount();
 				missCount++;
 				if (missCount >= totalMissCount)
 				{
+					songAudioSource.Stop();
+					gameLost = true;
 					loseScreen.SetActive(true);
-					Time.timeScale = 0;
 				}
 			}
 		}
 		// 注意，当音符到达移除线时，它会在 MusicNote 的 Update() 函数中自行移除。
+	}
+
+	private void UpdateTrashBag()
+	{
+		if (missCount < 4)
+		{
+			trashBag[missCount].SetActive(true);
+		}
+	}
+	private void UpdateMissCount()
+	{
+		if (missCount < 5)
+		{
+			missCounters[missCount].SetActive(true);
+		}
 	}
 
 	private void CheckGameResult()
@@ -216,20 +235,17 @@ public class Conductor : MonoBehaviour
 		}
 		else
 		{
-			Time.timeScale = 0;
 			loseScreen.SetActive(true);
 		}
 	}
 
 	public void RestartGame()
 	{
-		Time.timeScale = 1;
 		UnityEngine.SceneManagement.SceneManager.LoadScene("Sloth");
 	}
 
 	public void ExitToMainMenu()
 	{
-		Time.timeScale = 1;
 		UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
 	}
 }
