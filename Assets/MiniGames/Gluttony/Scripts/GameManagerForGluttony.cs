@@ -79,6 +79,8 @@ public class GameManagerForGluttony : MonoBehaviour
     {
         // 显示胜利屏幕
         WinScreen.SetActive(true);
+        PlayerPrefs.SetInt("GluttonyCompleted", 1); // 存储通关状态
+        PlayerPrefs.Save();
         Time.timeScale = 0; // 暂停游戏
     }
 

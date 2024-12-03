@@ -74,6 +74,8 @@ public class GameManagerForWrath : MonoBehaviour
     {
         Time.timeScale = 0;
         winScreen.SetActive(true);
+        PlayerPrefs.SetInt("WrathCompleted", 1); // 存储通关状态
+        PlayerPrefs.Save();
     }
 
     public void GameLose()

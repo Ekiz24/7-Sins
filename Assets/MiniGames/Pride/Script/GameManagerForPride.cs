@@ -1,18 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManagerForPride : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public void ExitToMainMenu()
     {
-        
+        SceneManager.LoadScene("MainMenu");
     }
 
-    // Update is called once per frame
-    void Update()
+    public void WinGame()
     {
-        
+        PlayerPrefs.SetInt("PrideCompleted", 1);
+        PlayerPrefs.Save();
+        Debug.Log("You Win!");
     }
 }
