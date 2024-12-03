@@ -85,6 +85,8 @@ public class GameManager : MonoBehaviour
 		fadePanel.SetActive(true);
 		isGameOver = true;
 		gameWinScreen.SetActive(true);
+		PlayerPrefs.SetInt("GreedCompleted", 1);
+		PlayerPrefs.Save();
 
 		if (timerText != null)
 		{
@@ -100,7 +102,7 @@ public class GameManager : MonoBehaviour
 		fadeAnimator.SetTrigger("StartFade");
 		Invoke("FreezeGame", 3.5f);
 		Invoke("LoadMainMenu", 2.5f); // Delay loading Main Menu to allow fade to complete
-		
+
 	}
 
 	private void FreezeGame()

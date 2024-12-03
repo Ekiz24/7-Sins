@@ -21,6 +21,8 @@ public class Conductor : MonoBehaviour
 	public GameObject posYObject;
 	public GameObject finishLineObject;
 	public GameObject removeLineObject;
+	public GameObject winScreen;
+	public GameObject loseScreen;
 
 	// 音符的起始位置X。
 	private float startLineX;
@@ -56,12 +58,15 @@ public class Conductor : MonoBehaviour
 	private int indexOfNextNote;
 
 	// 队列，保存当前在屏幕上的音乐节点的引用。
+	private int missCount;
+	public int totalMissCount = 3;
 	private Queue<MusicNote> notesOnScreen;
 
 	// 记录上一帧音频引擎经过的时间。我们用这个来计算歌曲的位置。
 	private float dsptimesong;
 
 	private bool songStarted = false;
+	private bool songFinished = false;
 
 	void PlayerInputted()
 	{
@@ -168,6 +173,13 @@ public class Conductor : MonoBehaviour
 			indexOfNextNote++;
 		}
 
+		// 检查歌曲是否播放完成
+		if (songposition >= songAudioSource.clip.length && !songFinished)
+		{
+			songFinished = true;
+			CheckGameResult();
+		}
+
 		// 循环队列以检查是否有音符到达终点线。
 		if (notesOnScreen.Count > 0)
 		{
@@ -181,9 +193,43 @@ public class Conductor : MonoBehaviour
 				notesOnScreen.Dequeue();
 
 				statusText.text = "MISS!";
+
+				missCount++;
+				if (missCount >= totalMissCount)
+				{
+					loseScreen.SetActive(true);
+					Time.timeScale = 0;
+				}
 			}
 		}
-
 		// 注意，当音符到达移除线时，它会在 MusicNote 的 Update() 函数中自行移除。
+	}
+
+	private void CheckGameResult()
+	{
+		if (missCount < 3)
+		{
+			winScreen.SetActive(true);
+			PlayerPrefs.SetInt("SlothCompleted", 1);
+			PlayerPrefs.Save();
+			Debug.Log("You Win!");
+		}
+		else
+		{
+			Time.timeScale = 0;
+			loseScreen.SetActive(true);
+		}
+	}
+
+	public void RestartGame()
+	{
+		Time.timeScale = 1;
+		UnityEngine.SceneManagement.SceneManager.LoadScene("Sloth");
+	}
+
+	public void ExitToMainMenu()
+	{
+		Time.timeScale = 1;
+		UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
 	}
 }

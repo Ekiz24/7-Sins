@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI; // 引入 UI 命名空间
+using UnityEngine.UI;
 
 public class Menu : MonoBehaviour
 {

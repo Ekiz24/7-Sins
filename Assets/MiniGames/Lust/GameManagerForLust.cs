@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameManagerForPride : MonoBehaviour
+public class GameManagerForLust : MonoBehaviour
 {
     public void ExitToMainMenu()
     {
@@ -12,7 +12,7 @@ public class GameManagerForPride : MonoBehaviour
 
     public void WinGame()
     {
-        PlayerPrefs.SetInt("PrideCompleted", 1);
+        PlayerPrefs.SetInt("LustCompleted", 1);
         PlayerPrefs.Save();
         Debug.Log("You Win!");
     }
