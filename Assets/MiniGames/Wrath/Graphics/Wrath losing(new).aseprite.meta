@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 723c627fd9408f6428dc2df03e9b861d
+guid: 0ae0b05ab3797f34cb59a615c4ce140c
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -119,7 +119,7 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: Envy fail screen
+  - name: Wrath losing(new)
     originalName: 
     pivot: {x: 0.5, y: 0}
     alignment: 9
@@ -130,7 +130,7 @@ ScriptedImporter:
       y: 4
       width: 1920
       height: 1080
-    spriteID: 4fa969e061f172e43a4bf9c2c9a0a580
+    spriteID: 72386b4d02cca444db334992ccdd64ac
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -142,13 +142,13 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: -1616404888
-    name: Envy fail screen
+    guid: 1150615089
+    name: Wrath losing(new)
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Envy fail screen
+    - name: Wrath losing(new)
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
@@ -156,7 +156,7 @@ ScriptedImporter:
         y: 0
         width: 1920
         height: 1080
-      spriteId: 4fa969e061f172e43a4bf9c2c9a0a580
+      spriteId: 72386b4d02cca444db334992ccdd64ac
     linkedCells: []
     parentIndex: -1
   platformSettings:
