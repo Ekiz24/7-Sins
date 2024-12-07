@@ -8,6 +8,8 @@ TagManager:
   - Civilian
   - Bullet
   - BossFight
+  - Coin
+  - Audio
   layers:
   - Default
   - TransparentFX

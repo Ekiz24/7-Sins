@@ -19,11 +19,14 @@ public class GameManagerForGluttony : MonoBehaviour
 
     // 添加主角动画控制器引用
     public Animator characterAnimator;
+    AudioManager audioManager;
+
 
     void Awake()
     {
         Instance = this;
         Time.timeScale = 1;
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
     }
 
     void Update()
@@ -58,6 +61,7 @@ public class GameManagerForGluttony : MonoBehaviour
         if (characterAnimator != null)
         {
             characterAnimator.SetTrigger("Swallow"); // "Swallow"是动画触发器的名称
+            audioManager.PlaySFX(audioManager.Chew);
         }
 
         // 更新角色的 sprite，以显示不同的状态
@@ -82,6 +86,7 @@ public class GameManagerForGluttony : MonoBehaviour
         PlayerPrefs.SetInt("GluttonyCompleted", 1); // 存储通关状态
         PlayerPrefs.Save();
         Time.timeScale = 0; // 暂停游戏
+        //audioManager.Stop(audioManager.background);
     }
 
     void EndGame()
@@ -89,5 +94,7 @@ public class GameManagerForGluttony : MonoBehaviour
         // 显示失败屏幕
         FailScreen.SetActive(true);
         Time.timeScale = 0; // 暂停游戏
+        //audioManager.Stop(audioManager.background);
+
     }
 }

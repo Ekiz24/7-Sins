@@ -15,6 +15,12 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private Collider2D coll;
     private Animator animator;
+    AudioManager audioManager;
+    private void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
+
 
     void Start()
     {
@@ -55,6 +61,8 @@ public class PlayerController : MonoBehaviour
         // 设置Animator参数为true，播放打枪动画
         animator.SetBool("Shoot", true);
         StartCoroutine(ShootWithDelay());
+        audioManager.PlaySFX(audioManager.Shoot);
+
     }
 
     IEnumerator ShootWithDelay()

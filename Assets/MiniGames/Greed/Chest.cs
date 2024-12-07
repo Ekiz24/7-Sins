@@ -11,7 +11,14 @@ public class Chest : MonoBehaviour
 	private int collectedCoins = 0;
 	private GameManager gameManager;
 
-	void Start()
+    AudioManager audioManager;
+    private void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
+
+
+    void Start()
 	{
 		rb = GetComponent<Rigidbody2D>();
 		anim = GetComponent<Animator>();
@@ -26,7 +33,8 @@ public class Chest : MonoBehaviour
 		{
 			Debug.Log("Coin collected!"); // Debug statement to confirm collision
 			collectedCoins++;
-			UpdateChestState();
+            audioManager.PlaySFX(audioManager.Coin);
+            UpdateChestState();
 			Destroy(other.gameObject); // Remove the coin from the scene
 
 			// Check for game over condition

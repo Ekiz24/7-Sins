@@ -17,9 +17,14 @@ public class GameManagerEnvy : MonoBehaviour
 	private bool puzzleIsOpen = false; // Flag to track if a puzzle is already opened
 
 	private Vector2 backgroundSize;
+    AudioManager audioManager;
+    private void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
 
-	// Create the game setup with size x size pieces.
-	private void CreateGamePieces(float gapThickness, Transform piecePrefab)
+    // Create the game setup with size x size pieces.
+    private void CreateGamePieces(float gapThickness, Transform piecePrefab)
 	{
 		float width = 1 / (float)size;
 		for (int row = 0; row < size; row++)
@@ -68,7 +73,8 @@ public class GameManagerEnvy : MonoBehaviour
 		{
 			shuffling = true;
 			StartCoroutine(WaitShuffle(0.5f));
-		}
+            
+        }
 
 		// Detect click on the background if puzzle is not already opened
 		if (!puzzleIsOpen && Input.GetMouseButtonDown(0))
@@ -81,7 +87,8 @@ public class GameManagerEnvy : MonoBehaviour
 			{
 				// Now map this click to the puzzle area and show the puzzle
 				OpenPuzzleBasedOnClick(localPoint);
-			}
+              
+            }
 		} else if (puzzleIsOpen && Input.GetMouseButtonDown(0)) {
 			// Handle clicks on puzzle pieces
 			RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);

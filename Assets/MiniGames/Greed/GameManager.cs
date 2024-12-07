@@ -16,8 +16,15 @@ public class GameManager : MonoBehaviour
 
 	private bool isGameOver = false;
 	private PlayerController1 playerController;
+    AudioManager audioManager;
 
-	void Start()
+    private void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
+   
+
+    void Start()
 	{
 		Debug.Log("GameManager started.");
 		isGameOver = false;
@@ -49,7 +56,8 @@ public class GameManager : MonoBehaviour
 		if (gameTime <= 0 && !isGameOver)
 		{
 			GameWin();
-		}
+			//audioManager.Stop(audioManager.background);
+        }
 	}
 
 
@@ -70,9 +78,10 @@ public class GameManager : MonoBehaviour
 		}
 		ShowGameOverScreen();
 		FreezeGame();
-		//StartCoroutine(ShowGameOverSequence());
+        //audioManager.Stop(audioManager.background);
+        //StartCoroutine(ShowGameOverSequence());
 
-	}
+    }
 
 	private void ShowGameOverScreen()
 	{

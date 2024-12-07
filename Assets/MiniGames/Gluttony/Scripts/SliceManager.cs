@@ -8,6 +8,11 @@ public class SliceManager : MonoBehaviour
     private List<Vector3> slicePoints = new List<Vector3>();
     private Camera mainCamera;
     private LineRenderer lineRenderer;
+    AudioManager audioManager;
+    private void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
 
     void Start()
     {
@@ -71,6 +76,7 @@ public class SliceManager : MonoBehaviour
             if (hit.collider != null)
             {
                 Debug.Log("Hit Fruit: " + hit.collider.name);
+                audioManager.PlaySFX(audioManager.Slice);
                 Fruit fruit = hit.collider.GetComponent<Fruit>();
                 if (fruit != null)
                 {

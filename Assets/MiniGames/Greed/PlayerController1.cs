@@ -15,7 +15,9 @@ public class PlayerController1 : MonoBehaviour
 	private bool isChestFalling = false; // Track if chest is falling
 	private Vector3 targetChestOffset = new Vector3(0, 0.5f, 0); // Target position for chest when falling
 
-	void Start()
+    
+
+    void Start()
 	{
 		mainCamera = Camera.main;
 		spriteRenderer = GetComponent<SpriteRenderer>();
