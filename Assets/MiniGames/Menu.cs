@@ -18,22 +18,26 @@ public class Menu : MonoBehaviour
     void Start()
     {
         // 初始化灯光状态
-        foreach (GameObject light in lights)
+        for (int i = 0; i < lights.Length; i++)
         {
-            light.SetActive(false);
+            lights[i].SetActive(false);
         }
 
-        // 如果所有场景都完成，激活所有灯
+        // 检查每个场景的获胜状态，并设置对应灯光的状态
         bool allCompleted = true;
-        foreach (string scene in scenes)
+        for (int i = 0; i < scenes.Length; i++)
         {
-            if (PlayerPrefs.GetInt(scene + "Completed", 0) == 0)
+            if (PlayerPrefs.GetInt(scenes[i] + "Completed", 0) == 1)
+            {
+                lights[i].SetActive(true); // 对应场景的灯常亮
+            }
+            else
             {
                 allCompleted = false;
-                break;
             }
         }
 
+        // 如果所有场景都完成，激活所有灯
         if (allCompleted)
         {
             foreach (GameObject light in lights)

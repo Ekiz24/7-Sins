@@ -134,4 +134,13 @@ public class GameManagerForWrath : MonoBehaviour
             GameWin();
         }
     }
+    public void RestartGame()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Wrath");
+    }
+
+    public void ExitToMainMenu()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
+    }
 }
