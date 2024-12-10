@@ -17,6 +17,7 @@ public class GameManagerEnvy : MonoBehaviour
 
 	[SerializeField] float gameTime; // Keeps track of the elapsed time
 	[SerializeField] TextMeshProUGUI timerText;
+	[SerializeField] TextMeshProUGUI count;
 
 	private List<Transform> pieces;
 	private int emptyLocation;
@@ -29,14 +30,14 @@ public class GameManagerEnvy : MonoBehaviour
 	private int puzzlesCompleted = 0;
 
 	private Vector2 backgroundSize;
-    AudioManager audioManager;
-    private void Awake()
-    {
-        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
-    }
+	AudioManager audioManager;
+	private void Awake()
+	{
+		audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+	}
 
-    // Create the game setup with size x size pieces.
-    private void CreateGamePieces(float gapThickness, Transform piecePrefab)
+	// Create the game setup with size x size pieces.
+	private void CreateGamePieces(float gapThickness, Transform piecePrefab)
 	{
 		Debug.Log($"Destroying {pieces.Count} pieces");
 		// Destroy existing game pieces before clearing the list
@@ -101,9 +102,6 @@ public class GameManagerEnvy : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-		if(puzzlesCompleted >= 4) {
-			FinishGame();
-		}
 
 		if ((!isGameOver) && (gameTime > 0))
 		{
@@ -116,7 +114,7 @@ public class GameManagerEnvy : MonoBehaviour
 			timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
 		}
 
-		if(gameTime <= 0)
+		if (gameTime <= 0)
 		{
 			GameOver();
 		}
@@ -134,7 +132,9 @@ public class GameManagerEnvy : MonoBehaviour
 				OpenPuzzleBasedOnClick(localPoint);
 
 			}
-		} else if (puzzleIsOpen && Input.GetMouseButtonDown(0)) {
+		}
+		else if (puzzleIsOpen && Input.GetMouseButtonDown(0))
+		{
 			// Handle clicks on puzzle pieces
 			RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
 			if (CheckCompletion())
@@ -164,7 +164,7 @@ public class GameManagerEnvy : MonoBehaviour
 		{
 			return;
 		}
-			
+
 		// Set the puzzleIsOpen flag to true to stop further puzzle opening
 		puzzleIsOpen = true;
 		backgroundImage.enabled = false;
@@ -242,6 +242,12 @@ public class GameManagerEnvy : MonoBehaviour
 		puzzleIsOpen = false;  // Reset the flag to allow a new puzzle to open
 		puzzlesClickable = true; // Re-enable opening new puzzles
 		puzzlesCompleted += 1;
+		count.text = puzzlesCompleted.ToString() + "/4";
+
+		if (puzzlesCompleted >= 4)
+		{
+			FinishGame();
+		}
 	}
 
 	private IEnumerator WaitShuffle(float duration)
@@ -279,7 +285,9 @@ public class GameManagerEnvy : MonoBehaviour
 		}
 		isGameOver = true;
 		winScreenPanel.gameObject.SetActive(true);
-		StartCoroutine(LoadSceneAfterDelay("MainMenu", 1.5f));
+		PlayerPrefs.SetInt("EnvyCompleted", 1);
+		PlayerPrefs.Save();
+		//StartCoroutine(LoadSceneAfterDelay("MainMenu", 1.5f));
 	}
 
 	private IEnumerator LoadSceneAfterDelay(string sceneName, float delay)

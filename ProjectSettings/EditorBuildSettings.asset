@@ -29,4 +29,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Wrath.unity
     guid: 5bef24c05dd9a4068a7d720f7a57719f
+  - enabled: 1
+    path: Assets/Scenes/Envy.unity
+    guid: 5ec7a208861cc844c9ddfd880d95aec0
   m_configObjects: {}
