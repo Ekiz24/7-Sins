@@ -22,6 +22,7 @@ public class AudioManager : MonoBehaviour
     public static AudioManager instance;
     private void Awake()
     {
+
         if (instance == null)
         {
             instance = this;
@@ -46,7 +47,17 @@ public class AudioManager : MonoBehaviour
         musicSource.clip = background;
         musicSource.Play();
     }
-
+    private void Update()
+    {
+        if (SceneManager.GetActiveScene().name == "Sloth")
+        {
+            musicSource.volume = 0;
+        }
+        else
+        {
+            musicSource.volume = 1f;
+        }
+    }
     public void PlaySFX(AudioClip clip)
     {
         SFXSource.PlayOneShot(clip);

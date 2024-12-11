@@ -34,6 +34,7 @@ public class GameManagerEnvy : MonoBehaviour
 	AudioManager audioManager;
 	private void Awake()
 	{
+		Time.timeScale = 1;
 		audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
 	}
 

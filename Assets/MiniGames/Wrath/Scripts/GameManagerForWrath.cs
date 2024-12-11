@@ -43,6 +43,7 @@ public class GameManagerForWrath : MonoBehaviour
 
     private void Start()
     {
+        Time.timeScale = 1;
         InitializeGame();
     }
 

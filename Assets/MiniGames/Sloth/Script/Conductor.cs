@@ -226,7 +226,7 @@ public class Conductor : MonoBehaviour
 
 	private void CheckGameResult()
 	{
-		if (missCount < 3)
+		if (missCount < totalMissCount)
 		{
 			winScreen.SetActive(true);
 			PlayerPrefs.SetInt("SlothCompleted", 1);

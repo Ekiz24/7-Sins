@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
 
 	void Start()
 	{
+		Time.timeScale = 1;
 		Debug.Log("GameManager started.");
 		isGameOver = false;
 		gameOverScreen.SetActive(false); // Hide the Game Over screen at start

@@ -29,7 +29,7 @@ public class Menu : MonoBehaviour
         {
             if (PlayerPrefs.GetInt(scenes[i] + "Completed", 0) == 1)
             {
-                lights[i].SetActive(true); // 对应场景的灯常亮
+                lights[i + 1].SetActive(true); // 对应场景的灯常亮
             }
             else
             {
