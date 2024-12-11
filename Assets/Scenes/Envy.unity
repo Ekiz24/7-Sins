@@ -154,7 +154,7 @@ RectTransform:
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1517245644}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -230,7 +230,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1517245644}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -389,9 +389,10 @@ MonoBehaviour:
   envyGirlImage: {fileID: 400385129}
   winScreenPanel: {fileID: 1832694458}
   loseScreenPanel: {fileID: 870729331}
-  gameTime: 10
+  gameTime: 60
   timerText: {fileID: 590617370}
   count: {fileID: 2138634953}
+  description: {fileID: 1524271905}
 --- !u!1 &710931335
 GameObject:
   m_ObjectHideFlags: 0
@@ -1414,10 +1415,10 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1764059997}
+  - {fileID: 1524271906}
   - {fileID: 400385128}
   - {fileID: 590617369}
   - {fileID: 2138634952}
-  - {fileID: 1524271906}
   - {fileID: 1832694458}
   - {fileID: 870729331}
   m_Father: {fileID: 0}
@@ -1459,7 +1460,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1517245644}
-  m_RootOrder: 4
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
@@ -1486,7 +1487,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '           When each puzzle piece is complete, click on the blank space.'
+  m_text: "           Complete 4 puzzles in 60 seconds\n           When each puzzle
+    piece is complete, click on the blank space."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 56ff388a769e14b07b4ef9dc9dcd405d, type: 2}
   m_sharedMaterial: {fileID: -1394270677668159092, guid: 56ff388a769e14b07b4ef9dc9dcd405d, type: 2}
@@ -2188,7 +2190,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1517245644}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}

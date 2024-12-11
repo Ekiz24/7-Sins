@@ -18,6 +18,7 @@ public class GameManagerEnvy : MonoBehaviour
 	[SerializeField] float gameTime; // Keeps track of the elapsed time
 	[SerializeField] TextMeshProUGUI timerText;
 	[SerializeField] TextMeshProUGUI count;
+	[SerializeField] GameObject description;
 
 	private List<Transform> pieces;
 	private int emptyLocation;
@@ -160,6 +161,7 @@ public class GameManagerEnvy : MonoBehaviour
 	// Determine which puzzle to open based on the click position
 	private void OpenPuzzleBasedOnClick(Vector2 clickPosition)
 	{
+		description.SetActive(false);
 		if (puzzleIsOpen)
 		{
 			return;
@@ -243,7 +245,7 @@ public class GameManagerEnvy : MonoBehaviour
 		puzzlesClickable = true; // Re-enable opening new puzzles
 		puzzlesCompleted += 1;
 		count.text = puzzlesCompleted.ToString() + "/4";
-
+		description.SetActive(true);
 		if (puzzlesCompleted >= 4)
 		{
 			FinishGame();

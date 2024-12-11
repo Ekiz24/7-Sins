@@ -10,21 +10,22 @@ public class GameManager : MonoBehaviour
 	public GameObject gameWinScreen;
 	[SerializeField] float gameTime; // Keeps track of the elapsed time
 	[SerializeField] TextMeshProUGUI timerText;
+	public TextMeshProUGUI instructionText;
 
 	public GameObject fadePanel; // Reference to the Fade Panel
 	private Animator fadeAnimator; // Animator for the fade panel
 
 	private bool isGameOver = false;
 	private PlayerController1 playerController;
-    AudioManager audioManager;
+	AudioManager audioManager;
 
-    private void Awake()
-    {
-        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
-    }
-   
+	private void Awake()
+	{
+		audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+	}
 
-    void Start()
+
+	void Start()
 	{
 		Debug.Log("GameManager started.");
 		isGameOver = false;
@@ -39,6 +40,10 @@ public class GameManager : MonoBehaviour
 		fadeAnimator = fadePanel.GetComponent<Animator>();
 		playerController = FindObjectOfType<PlayerController1>();
 
+		if (instructionText != null)
+		{
+			StartCoroutine(FlashInstructionText());
+		}
 	}
 
 	void Update()
@@ -57,7 +62,7 @@ public class GameManager : MonoBehaviour
 		{
 			GameWin();
 			//audioManager.Stop(audioManager.background);
-        }
+		}
 	}
 
 
@@ -78,10 +83,10 @@ public class GameManager : MonoBehaviour
 		}
 		ShowGameOverScreen();
 		FreezeGame();
-        //audioManager.Stop(audioManager.background);
-        //StartCoroutine(ShowGameOverSequence());
+		//audioManager.Stop(audioManager.background);
+		//StartCoroutine(ShowGameOverSequence());
 
-    }
+	}
 
 	private void ShowGameOverScreen()
 	{
@@ -106,14 +111,14 @@ public class GameManager : MonoBehaviour
 		{
 			playerController.StopMovement();
 		}
-		Debug.Log("Setting fade trigger");
+		Time.timeScale = 0;
+		//Debug.Log("Setting fade trigger");
 		// Trigger fade and load MainMenu after a delay
 		fadeAnimator.SetTrigger("StartFade");
-		Invoke("FreezeGame", 3.5f);
-		Invoke("LoadMainMenu", 2.5f); // Delay loading Main Menu to allow fade to complete
+		//Invoke("FreezeGame", 3.5f);
+		//Invoke("LoadMainMenu", 2.5f); // Delay loading Main Menu to allow fade to complete
 
 	}
-
 	private void FreezeGame()
 	{
 		gameWinScreen.SetActive(false);
@@ -126,10 +131,24 @@ public class GameManager : MonoBehaviour
 		Time.timeScale = 1; // Ensure the time scale is reset to 1
 		SceneManager.LoadScene(SceneManager.GetActiveScene().name); // Reload the current scene
 	}
-
-	private void LoadMainMenu()
+	public void LoadMainMenu()
 	{
 		SceneManager.LoadScene("MainMenu"); // Ensure "MainMenu" is the exact name of your main menu scene
 	}
 
+	private IEnumerator FlashInstructionText()
+	{
+		int flashCount = 3;
+		float flashDuration = 0.5f;
+
+		for (int i = 0; i < flashCount; i++)
+		{
+			instructionText.alpha = 1f;
+			yield return new WaitForSeconds(flashDuration);
+			instructionText.alpha = 0f;
+			yield return new WaitForSeconds(flashDuration);
+		}
+
+		Destroy(instructionText.gameObject);
+	}
 }

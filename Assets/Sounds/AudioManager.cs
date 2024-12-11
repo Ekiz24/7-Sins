@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
 using UnityEngine;
+using UnityEngine.SceneManagement; // 引入 SceneManagement 命名空间
 
 public class AudioManager : MonoBehaviour
 {
@@ -21,7 +22,7 @@ public class AudioManager : MonoBehaviour
     public static AudioManager instance;
     private void Awake()
     {
-        if(instance == null)
+        if (instance == null)
         {
             instance = this;
             DontDestroyOnLoad(this);
@@ -30,10 +31,18 @@ public class AudioManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-       
+
     }
     private void Start()
     {
+        // 检查当前场景名称
+        if (SceneManager.GetActiveScene().name == "Sloth")
+        {
+            // 禁用脚本
+            this.enabled = false;
+            return;
+        }
+
         musicSource.clip = background;
         musicSource.Play();
     }
@@ -43,7 +52,7 @@ public class AudioManager : MonoBehaviour
         SFXSource.PlayOneShot(clip);
     }
 
-    public void Stop(AudioClip clip) 
+    public void Stop(AudioClip clip)
     {
         musicSource.Stop();
     }
